@@ -1,4 +1,4 @@
-#Key Features: 
+### Key Features: 
 
 1.	Aggregated Event Listings: The platform aggregates event listings from different societies within the university, providing a single point of access for students to discover upcoming events across various domains.
 2.	User-Friendly Interface: The user interface is designed to be intuitive and user-friendly, enabling easy navigation and event discovery for students.
@@ -7,18 +7,19 @@
 5.	Elimination of Information Overload: By centralizing event information, the platform eliminates the need for students to monitor multiple communication channels such as scattered emails and WhatsApp groups. This reduces information overload and ensures that students stay informed about university events without missing out on important opportunities.
 6.	Customized Event Categories: Events are categorized based on different themes or societies (Wellness, Gaming, Careers, etc.), allowing students to filter and browse events based on their interests.
 
-#Install dependencies and fire up the application:
+### Install dependencies and fire up the application:
 
-Commands
-npm install =>	Install all dependencies specified in package.json
+```bash
+npm install      #Install all dependencies specified in package.json
 
-npm run dev =>	Start the development server with Vite
+npm run dev      #Start the development server with Vite
 
-npx prisma migrate dev --name init =>	Apply the defined schema to the database
+npx prisma migrate dev --name init     #Apply the defined schema to the database
 
-npx prisma studio	=> Browse the data in the database
+npx prisma studio    #Browse the data in the database
+```
 
-#Key dependencies:
+### Key dependencies:
 
 •	SvelteKit framework (@sveltejs/kit)
 
@@ -34,7 +35,7 @@ npx prisma studio	=> Browse the data in the database
 
 •	Development utilities (autoprefixer, postcss, sv-popup, vite)
 
-#Additional Setup:
+### Additional Setup:
 
 •	TailwindCSS configuration: You can find detailed instructions and configuration options in the TailwindCSS documentation
 
