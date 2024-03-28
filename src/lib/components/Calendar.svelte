@@ -1,6 +1,6 @@
 <script lang="ts">
 // @ts-nocheck
-
+ 
     import {
         daysInMonth,
         scheduleDate,
@@ -30,18 +30,18 @@
             $selectedDate.getMonth() + 1,
             1
         ).getDay();
-
+ 
         if (dayStartsAtSunday(firstWeekDayOfTheMonth, dayIndex)) {
             return `grid-column-start: ${7};`;
         }
-
+ 
         if (isFirstDayOfTheMonth(dayIndex)) {
             return `grid-column-start: ${firstWeekDayOfTheMonth};`;
         }
-
+ 
         return "";
     };
-
+ 
     
     function dayClickedEvent(dayIndex) {
         scheduleDate.set(
@@ -51,14 +51,14 @@
                     $selectedDate.getMonth(), 
                     dayIndex)
         );
-
+ 
   }
-
+ 
   
   function isFirstDayOfTheMonth(dayIndex) {
     return dayIndex === 1;
   }
-
+ 
   
   function dayStartsAtSunday( firstWeekDayOfTheMonth, dayIndex ) {
     return firstWeekDayOfTheMonth === 0 && dayIndex === 1;
@@ -73,7 +73,7 @@
         ).getDate()
         );
     }
-
+ 
     function previousMonth() {
         selectedDate.set(
             new Date(
@@ -82,13 +82,13 @@
             $selectedDate.getDate()
             )
         );
-
+ 
         viewCurrentDate.set(
-            `${$selectedDate.getMonth() + 1}/${$selectedDate.getFullYear()}`
+        `${$selectedDate.getFullYear()} / ${$selectedDate.getMonth() + 1}`
         );
     SetDaysInMonth();
     }
-
+ 
     function nextMonth() {
         selectedDate.set(
             new Date(
@@ -97,14 +97,14 @@
                 $selectedDate.getDate()
             )
         );
-
+ 
         viewCurrentDate.set(
-        `${$selectedDate.getMonth() + 1}/${$selectedDate.getFullYear()}`
+        `${$selectedDate.getFullYear()} / ${$selectedDate.getMonth() + 1}`
         );
         SetDaysInMonth();
     }
 </script>
-
+ 
 <div id="calendar-wrapper">
     <div id="calendar-info">
         <button class="picker" on:click={() => previousMonth()}>
@@ -117,39 +117,26 @@
             ⟩
         </button>
     </div>
-
+ 
     <div id="calendar-container">
         {#each days as day}
             <div class="day">{day}</div>    
         {/each}
-
+ 
         {#each { length: $daysInMonth } as _, dayIndex}
-            <Modal>
-                <Content>
-                    <Schedule/>
-                </Content>
-                <Trigger>
-                    <button
-                        class="day-cell"
-                        style={$daysInMonth ? startingDayPosition(dayIndex + 1) : ""}
-                        on:click={() => dayClickedEvent(dayIndex + 1)}
-                    >
-                        {dayIndex + 1}
-                        <CalendarEvents eventDayIndex={dayIndex + 1} eventsForMonth={writable(data.events)} />
-                    </button>
-                    
-                </Trigger>
-                
-            </Modal>
-            
+            <button
+                class="day-cell flex flex-col justify-start gap-2"
+                style={$daysInMonth ? startingDayPosition(dayIndex + 1) : ""}
+                on:click={() => dayClickedEvent(dayIndex + 1)}
+            >
+                {dayIndex + 1}
+                <CalendarEvents eventDayIndex={dayIndex + 1} eventsForMonth={writable(data.events)} />
+            </button>
         {/each}
     </div>
 </div>
-
+ 
 <style>
-    #calendar-wrapper {
-        margin: 80px;
-    }
     #calendar-container {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -192,9 +179,11 @@
         cursor: pointer;
     }
     .day {
-
+ 
         padding: 20px;
         border: 1px solid #dbdbdb;
         background: #ffffff;
+        margin-bottom: 10px;
     }
  </style>
+  
