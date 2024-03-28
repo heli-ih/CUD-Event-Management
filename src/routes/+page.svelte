@@ -1,15 +1,19 @@
 <script>
-    import Calendar from "../lib/components/Calendar.svelte";
-    export let data;
-    
+import Calendar from "../lib/components/Calendar.svelte";
+export let data;
+
 </script>
-
-    
-<p class="pb-5">hi <a href="/club">club</a></p>
-<p class="pb-5">hi <a href="/society">society</a></p>
-<p class="pb-5">hi <a href="/workshop">workshop</a></p>
-<p><a href="/createEvent">create event</a></p>
-
+ 
 <main>
-    <Calendar { data }/>
+    <div class="mx-24 my-16">
+ 
+        <Calendar { data }/>
+        <div class="flex justify-end w-full mt-7">
+            <a href="/createEvent">
+            
+                <button class="px-5 py-2 text-sm font-medium text-white bg-red-800 rounded-lg hover:bg-red-700">Create Event</button>
+            </a>
+        </div>
+    </div>
 </main>
+   

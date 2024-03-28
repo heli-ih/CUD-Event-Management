@@ -1,8 +1,5 @@
 <script>
 // @ts-nocheck
-
-    import { Modal, Content, Trigger}  from "sv-popup";
-    import Event from "./Event-Calendar.svelte";
     import {
         selectedEvent,
         selectedDate,
@@ -16,60 +13,38 @@
         return;
       }
       const eventsForSelectedDate = $eventsForMonth.filter(
-        (e = e.date.split("-")) =>
-        
-        Number(e[0]) === $selectedDate.getFullYear() &&
-        Number(e[1]) === $selectedDate.getMonth() &&
-        Number(e[2]) === eventDayIndex
+        (e) =>
+        parseInt(e.date.split("-")[0]) === $selectedDate.getFullYear() &&
+        parseInt(e.date.split("-")[1]) + 1 === $selectedDate.getMonth() &&
+        parseInt(e.date.split("-")[2]) === eventDayIndex
     );
     return eventsForSelectedDate;
   };
-
-  function toTime(date) {
-    if (
-      date.getHours() === 0 &&
-      date.getMinutes() === 0 &&
-      date.getSeconds() === 0
-    ) {
-      return "";
-    }
-
-    return date.toLocaleTimeString();
-  }
-
+ 
   function eventClicked(event) {
         selectedEvent.set(
                 event
         );
-
+ 
   }
 </script>
-
+ 
 {#each getEvents(eventDayIndex) as event}
-  <Modal>
-    <Content>
-        <Event/>
-    </Content>
-    <Trigger>
-        <button
-            class="event"
-            on:click={() => eventClicked(event.id)}
-        >
-          {event.title}
-          <br />
-          {toTime(event.Time)} - {toTime(event.endTime)}
-        </button>
-        
-    </Trigger>
-    
-</Modal>
+  <button
+      class="event w-full"
+      on:click={() => eventClicked(event.id)}
+  >
+    {event.title}
+    <br />
+    {event.startTime} - {event.endTime}
+  </button>
 {/each}
-
+ 
 <style>
   .event {
-    background: #daddfb;
+    background: #f8d8d7;
     padding: 5px;
     margin-bottom: 5px;
-    border-bottom: 4px solid #636cee;
+    border-bottom: 4px solid #AA3335;
   }
 </style>
