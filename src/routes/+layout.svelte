@@ -13,27 +13,27 @@
 
 <nav class="flex items-center justify-between px-10">
   <div class="flex flex-row w-[60%] items-center">
-    <a  class="flex items-center" href="/#">
+    <a  class="flex items-center" href="/">
       <img src={CUDlogo} alt="CUD Logo" class="h-[8vh]"/>
       <img src={img} alt="CUD Logo" class="h-[8vh]"/>
     </a>
     {#each data.categories as {name: catName, subCategory}}
       <div class="dropdown"> 
-          <a href="/{catName.toLowerCase()}"><button class="dropbtn" >{catName}</button></a>
+          <button class="dropbtn" >{catName}</button>
           <div class="dropdown-content top-16 ml-7">
             {#each subCategory as { name: subCatName}, i}
-              <a href="/{catName.toLowerCase()}/{subCatName}">{subCatName}</a>
-              {#if i !== subCategory.length - 1}
-                  <hr>
-              {/if}
+            <a href={subCatName === "Wellness Society" || subCatName === "Game Club" || subCatName === "CV Workshop" ? `/${catName.toLowerCase()}/${subCatName}` : "#"}>{subCatName}</a>
+            {#if i !== subCategory.length - 1}
+                    <hr>
+                {/if}
             {/each}
           </div>
       </div>
     {/each}
   </div>
-
-
-
+ 
+ 
+ 
   <!-- Search bar with dropdown -->
   <div class="dropdown">
     <div class="relative">
@@ -41,7 +41,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="absolute right-2 top-1  w-5 h-5 ">
         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
       </svg>
-
+ 
     </div>
     
     <ul class="dropdown-content ">
@@ -57,6 +57,7 @@
     </ul>
   </div>
 </nav>
+ 
 
 <slot />
 
