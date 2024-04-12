@@ -8,7 +8,6 @@
         viewCurrentDate,
     } from "../../stores/calendar.store";
     import CalendarEvents from "./Calendar-Events.svelte";
-    import { Modal, Content, Trigger}  from "sv-popup";
     import { writable } from "svelte/store";
 	export let data;
     
